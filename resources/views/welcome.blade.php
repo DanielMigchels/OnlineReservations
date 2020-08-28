@@ -3,11 +3,7 @@
 
 <style>
     .row {
-        margin-bottom: 20px;
-    }
-
-    .welcome {
-        margin-top: 100px;
+        margin-bottom: 15px;
     }
 
     .getstarted {
@@ -20,20 +16,46 @@
 
     }
 
-
     .restaurant {
         text-align: center;
         margin-bottom: 15px;
         display: table-cell;
     }
 
-    button {}
+    .card-img-top {
+        height: 250px;
+        object-fit: cover;
+        transition: transform .2s;
+    }
+
+    .card-img-top:hover {
+        transform: scale(1.25);
+    }
+
+    .login {
+        text-align: right;
+    }
 </style>
 
 <div class="container">
+    <div class="login">
+        <div class="row">
+            <div class="col-lg-12" data-aos="fade-right">
+                @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                    <a href="{{ url('/home') }}">Your business</a>
+                    @else
+                    <a href="{{ route('login') }}">Login as Business</a>
+                    @endauth
+                </div>
+                @endif
+            </div>
+        </div>
+    </div>
     <div class="welcome">
         <div class="row">
-            <div class="col-lg-12"data-aos="fade-right">
+            <div class="col-lg-12" data-aos="fade-right">
                 <div class="text-center">
                     <h1 class="title">
                         Online Reservations
@@ -81,7 +103,7 @@
             @foreach ($restaurants as $restaurant)
             <div class="col-lg-4" data-aos="fade-right">
                 <div class="card restaurant">
-                    <img class="card-img-top" src="{{ $restaurant->imagesource }}" alt="Image">
+                    <img class="card-img-top" src="{{ $restaurant->imagesource }}" alt="Image" onerror='if (this.src != "https://healthyfoodiemanon.com/wp-content/themes/nucleare-pro/images/no-image-box.png") this.src = "https://healthyfoodiemanon.com/wp-content/themes/nucleare-pro/images/no-image-box.png";'>
                     <div class="card-body">
                         <h5 class="card-title">{{ $restaurant->name }}</h5>
                         <p class="card-text">{{ $restaurant->description }}</p>
@@ -101,8 +123,8 @@
                 can accept or deny the reservation.
             </p>
             <div class="text-center">
-
-                <button type="button" class="btn btn-secondary ">I am a Business owner</button>
+                <a href="register">
+                    <button type="button" class="btn btn-secondary ">I am a Business owner</button></a>
             </div>
         </div>
     </div>
