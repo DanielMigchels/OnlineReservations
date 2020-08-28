@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $restaurants = \App\Restaurants::all();
+
+    return view('welcome', ['restaurants' => $restaurants]);
 });

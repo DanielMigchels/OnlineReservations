@@ -1,100 +1,109 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+@section('content')
 
-        <title>Laravel</title>
+<style>
+    .row {
+        margin-bottom: 20px;
+    }
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    .welcome {
+        margin-top: 100px;
+    }
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    .getstarted {
+        width: 100%;
+    }
 
-            .full-height {
-                height: 100vh;
-            }
+    .restaurants {
+        width: 100%;
+        display: table;
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    }
 
-            .position-ref {
-                position: relative;
-            }
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+    .restaurant {
+        text-align: center;
+        margin-bottom: 15px;
+        display: table-cell;
+    }
 
-            .content {
-                text-align: center;
-            }
+    button {}
+</style>
 
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+<div class="container">
+    <div class="welcome">
+        <div class="row">
+            <div class="col-lg-12"data-aos="fade-right">
+                <div class="text-center">
+                    <h1 class="title">
+                        Online Reservations
+                    </h1>
+                    <h2 class="subtitle">
+                        Secure reservations for everything for everyone
+                    </h2>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <h3>
+                    About us
+                </h3>
+                <p>
+                    Eating out without sharing personal information on unsecured connections with
+                    untrusted third party partners. Software is a big expense for small business
+                    owners but has became very important in this day and age. The pandemic required
+                    restaurants and bars to open up a reservation system online. Often this was done
+                    the quick and easy way opening up many vulnerabilities. We are here to resolve that
+                    with a free secure way of sending in reservations.
+                </p>
+                <h3>
+                    Secure
+                </h3>
+                <p>
+                    Instead of sending data unencrypted to a third party that isn't responsible with
+                    personal data, we send the data encrypted to our secure atlas database in the cloud.
+                    only accessable by the people who should have access to it. You and the restaurant.
+                    This way we keep your data safe and you don't have to worry about anything other
+                    then what to order!
+                </p>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+    <div class="getstarted">
+        <div class="row">
+            <div class="col-lg-12" data-aos="fade-right">
+                <h3>Let's get started!</h3>
+                <input class="form-control" type="text" placeholder="Find Restaurant" aria-label="Find Restaurant">
+            </div>
+        </div>
+    </div>
+
+    <div class="restaurants">
+        <div class="row">
+
+            @foreach ($restaurants as $restaurant)
+            <div class="col-lg-4" data-aos="fade-right">
+                <div class="card restaurant">
+                    <img class="card-img-top" src="{{ $restaurant->imagesource }}" alt="Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $restaurant->name }}</h5>
+                        <p class="card-text">{{ $restaurant->description }}</p>
+                        <a href="#" class="btn btn-success">Book a table</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12" data-aos="fade-right">
+            <h3>Business owner?</h3>
+            <p>
+                Sign up for free and receive e-mails when user reserve a table. There you
+                can accept or deny the reservation.
+            </p>
+            <div class="text-center">
+
+                <button type="button" class="btn btn-secondary ">I am a Business owner</button>
+            </div>
+        </div>
+    </div>
+</div>
