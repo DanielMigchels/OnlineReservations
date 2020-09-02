@@ -13,7 +13,6 @@
     .restaurants {
         width: 100%;
         display: table;
-
     }
 
     .restaurant {
@@ -44,9 +43,9 @@
                 @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                    <a href="{{ url('/home') }}">Your business</a>
+                    <a href="{{ url('/home') }}">Your businesses</a>
                     @else
-                    <a href="{{ route('login') }}">Login as Business</a>
+                    <a href="{{ route('login') }}">Login as business owner</a>
                     @endauth
                 </div>
                 @endif
@@ -64,6 +63,10 @@
                         Secure reservations for everything for everyone
                     </h2>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12" data-aos="fade-right">
                 <h3>
                     About us
                 </h3>
@@ -98,7 +101,7 @@
     </div>
 
     <div class="restaurants">
-        <div class="row">
+        <div class="row justify-content-center">
 
             @foreach ($restaurants as $restaurant)
             <div class="col-lg-4" data-aos="fade-right">
