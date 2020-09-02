@@ -28,3 +28,7 @@ Route::get('/home', function () {
 
     return view('home', ['restaurants' => $restaurants]);
 });
+
+Route::get('/addbusiness', function () {
+    return view('addbusiness');
+});
